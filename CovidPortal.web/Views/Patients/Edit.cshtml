@@ -1,0 +1,107 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model CovidPortal.web.Models.Entities.Patient
+
+<h1>Edit Patient</h1>
+
+@if (Model is null)
+{
+    <p>No patient found with this id</p>
+}
+
+@if (Model is not null)
+{
+    <form method="post">
+        <div class="mt-3">
+            <label class="form-lable">Id</label>
+            <input type="text" class="form-control" asp-for="Id" readonly />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">FullName</label>
+            <input type="text" class="form-control" asp-for="FullName" pattern="[A-Za-z\s]+" required oninput="handleInput(this)" />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" asp-for="Address" pattern="^[A-Za-z\s]+ \d+$+" required oninput="handleInput(this)" />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" asp-for="Phone" pattern="[0-9]{9,10}" maxlength="10" required oninput="handleInput(this)" />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">MobilePhone</label>
+            <input type="tel" class="form-control" asp-for="MobilePhone" pattern="[0-9]{10}" maxlength="10" required oninput="handleInput(this)" />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">BirthDate</label>
+            <input type="date" class="form-control" asp-for="BirthDate" required oninput="handleInput(this)" />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">CovidPositiveDate</label>
+            <input type="date" class="form-control" asp-for="CovidPositiveDate" oninput="handleInput(this)" />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">RecoveryDate</label>
+            <input type="date" class="form-control" asp-for="RecoveryDate" oninput="handleInput(this)" />
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+
+            <button type="submit" class="btn btn-danger ms-3" 
+                    asp-action="Delete"
+                    asp-controller="Patients">
+                Delete
+            </button>
+        </div>
+    </form>
+
+    <script>
+        function validateForm() {
+            // Validate BirthDate, CovidPositiveDate, and RecoveryDate formats if provided
+            var birthDateInput = document.querySelector('input[name="BirthDate"]');
+            var covidPositiveDateInput = document.querySelector('input[name="CovidPositiveDate"]');
+            var recoveryDateInput = document.querySelector('input[name="RecoveryDate"]');
+            var inputs = document.querySelectorAll('input');
+
+            var valid = true;
+
+            inputs.forEach(function (input) {
+                if (!input.checkValidity()) {
+                    input.style.borderColor = "red";
+                    valid = false;
+                } else {
+                    input.style.borderColor = "";
+                }
+            });
+
+            if (!valid) {
+                alert("Please fill in all fields correctly.");
+            }
+
+            return valid;
+        }
+
+        function handleInput(input) {
+            if (!input.checkValidity()) {
+                input.style.borderColor = "red";
+            } else {
+                input.style.borderColor = "";
+            }
+        }
+
+    }
+    </script>
+
+}
+

@@ -1,0 +1,110 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model CovidPortal.web.Models.Entities.VaccinDetails
+<h1>Vaccination Details</h1>
+
+<form method="post">
+    <div class="mt-3">
+        <label class="form-lable">Id</label>
+        <input type="text" class="form-control" asp-for="Id" readonly />
+    </div>
+
+    <div class="mt-3">
+        <label class="form-lable">First Corona Vaccine Date</label>
+        <input type="date" class="form-control" asp-for="CoronaVaccine1" />
+    </div>
+
+    <div class="mt-3">
+        <label class="form-lable">First Corona Vaccine Manufacturer</label>
+        <div class="dropdown">
+            <input type="text" class="form-control" asp-for="CoronaManufacturer1" id="coronaManufacturer1" onclick="toggleDropdown('manufacturerDropdown1')" />
+            <div id="manufacturerDropdown1" class="dropdown-content" style="display: none;">
+                <a href="#" onclick="selectManufacturer('Pfizer–BioNTech', 'coronaManufacturer1')">Pfizer–BioNTech</a>
+                <a href="#" onclick="selectManufacturer('Oxford–AstraZeneca', 'coronaManufacturer1')">Oxford–AstraZeneca</a>
+                <a href="#" onclick="selectManufacturer('Sinopharm BIBP', 'coronaManufacturer1')">Sinopharm BIBP</a>
+                <a href="#" onclick="selectManufacturer('Moderna', 'coronaManufacturer1')">Moderna</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <label class="form-lable">Second Corona Vaccine Date</label>
+        <input type="date" class="form-control" asp-for="CoronaVaccine2" />
+    </div>
+
+    <div class="mt-3">
+        <label class="form-lable">Second Corona Vaccine Manufacturer</label>
+        <div class="dropdown">
+            <input type="text" class="form-control" asp-for="CoronaManufacturer2" id="coronaManufacturer2" onclick="toggleDropdown('manufacturerDropdown2')" />
+            <div id="manufacturerDropdown2" class="dropdown-content" style="display: none;">
+                <a href="#" onclick="selectManufacturer('Pfizer–BioNTech', 'coronaManufacturer2')">Pfizer–BioNTech</a>
+                <a href="#" onclick="selectManufacturer('Oxford–AstraZeneca', 'coronaManufacturer2')">Oxford–AstraZeneca</a>
+                <a href="#" onclick="selectManufacturer('Sinopharm BIBP', 'coronaManufacturer2')">Sinopharm BIBP</a>
+                <a href="#" onclick="selectManufacturer('Moderna', 'coronaManufacturer2')">Moderna</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <label class="form-lable">Third Corona Vaccine Date</label>
+        <input type="date" class="form-control" asp-for="CoronaVaccine3" />
+    </div>
+
+    <div class="mt-3">
+        <label class="form-lable">Third Corona Vaccine Manufacturer</label>
+        <div class="dropdown">
+            <input type="text" class="form-control" asp-for="CoronaManufacturer3" id="coronaManufacturer3" onclick="toggleDropdown('manufacturerDropdown3')" />
+            <div id="manufacturerDropdown3" class="dropdown-content" style="display: none;">
+                <a href="#" onclick="selectManufacturer('Pfizer–BioNTech', 'coronaManufacturer3')">Pfizer–BioNTech</a>
+                <a href="#" onclick="selectManufacturer('Oxford–AstraZeneca', 'coronaManufacturer3')">Oxford–AstraZeneca</a>
+                <a href="#" onclick="selectManufacturer('Sinopharm BIBP', 'coronaManufacturer3')">Sinopharm BIBP</a>
+                <a href="#" onclick="selectManufacturer('Moderna', 'coronaManufacturer3')">Moderna</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <label class="form-lable">Forth Corona Vaccine</label>
+        <input type="date" class="form-control" asp-for="CoronaVaccine4" />
+    </div>
+
+    <div class="mt-3">
+        <label class="form-lable">Forth Corona Vaccine Manufacturer</label>
+        <div class="dropdown">
+            <input type="text" class="form-control" asp-for="CoronaManufacturer4" id="coronaManufacturer4" onclick="toggleDropdown('manufacturerDropdown4')" />
+            <div id="manufacturerDropdown4" class="dropdown-content" style="display: none;">
+                <a href="#" onclick="selectManufacturer('Pfizer–BioNTech', 'coronaManufacturer4')">Pfizer–BioNTech</a>
+                <a href="#" onclick="selectManufacturer('Oxford–AstraZeneca', 'coronaManufacturer4')">Oxford–AstraZeneca</a>
+                <a href="#" onclick="selectManufacturer('Sinopharm BIBP', 'coronaManufacturer4')">Sinopharm BIBP</a>
+                <a href="#" onclick="selectManufacturer('Moderna', 'coronaManufacturer4')">Moderna</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+
+    </div>
+</form>
+
+
+<script>
+    function toggleDropdown(dropdownId) {
+        var dropdown = document.getElementById(dropdownId);
+        if (dropdown.style.display === "none") {
+            dropdown.style.display = "block";
+        } else {
+            dropdown.style.display = "none";
+        }
+    }
+
+    function selectManufacturer(manufacturer, inputId) {
+        var inputField = document.getElementById(inputId);
+        inputField.value = manufacturer;
+        toggleDropdown('manufacturerDropdown1'); // Adjust the dropdown ID accordingly
+    }
+</script>
+
